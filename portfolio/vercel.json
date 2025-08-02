@@ -31,7 +31,11 @@
     },
     {
       "src": "/admin",
-      "dest": "/packages/admin/dist/"
+      "dest": "/packages/admin/dist/index.html"
+    },
+    {
+      "src": "/",
+      "dest": "/packages/frontend/dist/index.html"
     },
     {
       "src": "/(.*)",
