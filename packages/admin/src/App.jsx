@@ -67,7 +67,7 @@ function App() {
             {/* Blog Routes */}
             <Route path="blog" element={<BlogList />} />
             <Route path="blog/new" element={<BlogForm />} />
-            <Route path="blog/edit/:id"={<BlogForm />} />
+            <Route path="blog/edit/:id" element={<BlogForm />} />
             <Route path="blog/categories" element={<BlogCategoryManager />} />
             <Route path="blog/tags" element={<BlogTagManager />} />
 
