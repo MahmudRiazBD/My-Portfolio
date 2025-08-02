@@ -13,17 +13,17 @@
         "src": "packages/admin",
         "use": "@vercel/static-build",
         "config": {
-          "distDir": "dist"
-        },
-        "buildCommand": "npm run build"
+          "distDir": "dist",
+          "buildCommand": "npm run build"
+        }
       },
       {
         "src": "packages/frontend",
         "use": "@vercel/static-build",
         "config": {
-          "distDir": "dist"
-        },
-        "buildCommand": "npm run build"
+          "distDir": "dist",
+          "buildCommand": "npm run build"
+        }
       }
     ],
     "routes": [
@@ -48,5 +48,4 @@
         "dest": "/packages/frontend/dist/$1"
       }
     ]
-  }
-  
+  }  
