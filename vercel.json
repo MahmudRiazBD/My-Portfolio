@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "packages/api/upload.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "packages/api/delete-file.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "packages/admin/package.json",
+      "use": "@vercel/static-build",
+      "output": "dist"
+    },
+    {
+      "src": "packages/frontend/package.json",
+      "use": "@vercel/static-build",
+      "output": "dist"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/upload",
+      "dest": "/packages/api/upload.js"
+    },
+    {
+      "src": "/api/delete-file",
+      "dest": "/packages/api/delete-file.js"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "/packages/admin/dist/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/packages/frontend/dist/$1"
+    }
+  ]
+}
