@@ -12,26 +12,32 @@
     {
       "src": "packages/admin/package.json",
       "use": "@vercel/static-build",
-      "output": "dist"
+      "config": { "distDir": "dist" },
+      "buildCommand": "npm run build"
     },
     {
       "src": "packages/frontend/package.json",
       "use": "@vercel/static-build",
-      "output": "dist"
+      "config": { "distDir": "dist" },
+      "buildCommand": "npm run build"
     }
   ],
   "routes": [
     {
-      "src": "/api/upload",
-      "dest": "/packages/api/upload.js"
-    },
-    {
-      "src": "/api/delete-file",
-      "dest": "/packages/api/delete-file.js"
+      "src": "/api/(.*)",
+      "dest": "/packages/api/$1"
     },
     {
       "src": "/admin/(.*)",
       "dest": "/packages/admin/dist/$1"
+    },
+    {
+      "src": "/admin",
+      "dest": "/packages/admin/dist/index.html"
+    },
+    {
+      "src": "/",
+      "dest": "/packages/frontend/dist/index.html"
     },
     {
       "src": "/(.*)",
