@@ -1,51 +1,45 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "packages/api/upload.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "packages/api/delete-file.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "packages/admin",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "dist",
-          "buildCommand": "npm run build"
-        }
-      },
-      {
-        "src": "packages/frontend",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "dist",
-          "buildCommand": "npm run build"
-        }
+  "version": 2,
+  "builds": [
+    {
+      "src": "packages/api/upload.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "packages/api/delete-file.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "packages/admin/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "packages/admin/dist",
+        "buildCommand": "npm run build --workspace=packages/admin"
       }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "/packages/api/$1"
-      },
-      {
-        "src": "/admin/(.*)",
-        "dest": "/packages/admin/dist/$1"
-      },
-      {
-        "src": "/admin",
-        "dest": "/packages/admin/dist/index.html"
-      },
-      {
-        "src": "/",
-        "dest": "/packages/frontend/dist/index.html"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/packages/frontend/dist/$1"
+    },
+    {
+      "src": "packages/frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "packages/frontend/dist",
+        "buildCommand": "npm run build --workspace=packages/frontend"
       }
-    ]
-  }  
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/packages/api/$1"
+    },
+    {
+      "src": "/admin/(.*)",
+      "headers": { "Cache-Control": "s-maxage=0" },
+      "dest": "/packages/admin/dist/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "headers": { "Cache-Control": "s-maxage=0" },
+      "dest": "/packages/frontend/dist/index.html"
+    }
+  ]
+}
