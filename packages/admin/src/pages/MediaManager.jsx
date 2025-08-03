@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { supabase } from '../../lib/supabaseClient';
+import { supabase } from '../../../frontend/src/lib/supabaseClient';
 import { UploadCloud, Trash2, Copy, Eye, Search } from 'lucide-react';
 import { format } from 'date-fns';
 
